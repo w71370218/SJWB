@@ -19,6 +19,7 @@ from trips.views import home, attraction, accomodation, restaurant, post_detail,
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views
+from trips import datahandler, views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,4 +33,6 @@ urlpatterns = [
     re_path(r'^post/new/$', post_new, name='post_new'),
     re_path(r'^post/(?P<pk>[0-9]+)/delete/$', post_delete, name='post_delete'),
     re_path(r'^post/(?P<pk>[0-9]+)/edit/$', post_edit, name='post_edit'),
+    path('datahandler', datahandler.getdata),
+    path('', views.TaiwanChart, name='TaiwanChart'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
